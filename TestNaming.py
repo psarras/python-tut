@@ -26,6 +26,14 @@ class TestName(unittest.TestCase):
         date = get_date()
         self.assertTrue(date.endswith("_"))
 
+    def test_should_have_second_height_first(self):
+        name = calc_height(1, 2, False)
+        self.assertEqual(name, "H2-H1")
+
+    def test_should_only_have_first_structure_when_second_is_zero(self):
+        name = calc_height(1, 0)
+        self.assertEqual(name, "H1")
+
 
 if __name__ == '__main__':
     unittest.main()

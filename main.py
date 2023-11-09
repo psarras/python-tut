@@ -15,8 +15,13 @@ from datetime import datetime
 # if the height for the second structure is zero it should only display the height of the first structure
 # you will always have a height for the first structure
 
-def calc_height(height_1: int, height_2: int) -> str:
-    return f"H{height_1}-H{height_2}"
+def calc_height(height_1: int, height_2: int, left_to_right: bool = True) -> str:
+    if height_2 == 0:
+        return f"H{height_1}"
+    if not left_to_right:
+        return f"H{height_2}-H{height_1}"
+    else:
+        return f"H{height_1}-H{height_2}"
 
 
 def get_date() -> str:
@@ -35,5 +40,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser("Hello World!")
     parser.add_argument('-h1', '--height1', type=int, help='height of the first structure')
     parser.add_argument('-h2', '--height2', type=int, help='height of the second structure')
+    parser.add_argument('-d', '--date', action='store_true', help='include date in the name')
     args = parser.parse_args()
-    name_generator(args.value, args.parameter)
+    name_generator(args.height1, args.height2, args.date)
