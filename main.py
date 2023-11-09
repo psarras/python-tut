@@ -14,7 +14,7 @@
 # if the height for the second structure is zero it should only display the height of the first structure
 # you will always have a height for the first structure
 
-def main(value: int, parameter: int) -> str:
+def name_generator(value: int, parameter: int) -> str:
     name = f"{value}-{parameter}"
     print(name)
     return name
@@ -25,4 +25,4 @@ if __name__ == "__main__":
     parser.add_argument('-v', '--value', type=int, help='one of the important values')
     parser.add_argument('-p', '--parameter', type=int, help='one of the important parameters')
     args = parser.parse_args()
-    main(args.value, args.parameter)
+    name_generator(args.value, args.parameter)
