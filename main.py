@@ -1,4 +1,5 @@
 ﻿import argparse
+from datetime import datetime
 
 
 # Generate name gives you a name based on the value and parameter
@@ -14,15 +15,25 @@
 # if the height for the second structure is zero it should only display the height of the first structure
 # you will always have a height for the first structure
 
-def name_generator(value: int, parameter: int) -> str:
-    name = f"{value}-{parameter}"
+def calc_height(height_1: int, height_2: int) -> str:
+    return f"H{height_1}-H{height_2}"
+
+
+def get_date() -> str:
+    return f"{datetime.now().strftime('%Y%m%d')}_"
+
+
+def name_generator(height_1: int, height_2: int, include_date: bool = False) -> str:
+    height_chunk = calc_height(height_1, height_2)
+    date = get_date() if include_date else ""
+    name = f"{date}{height_chunk}.gsa"
     print(name)
     return name
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Hello World!")
-    parser.add_argument('-v', '--value', type=int, help='one of the important values')
-    parser.add_argument('-p', '--parameter', type=int, help='one of the important parameters')
+    parser.add_argument('-h1', '--height1', type=int, help='height of the first structure')
+    parser.add_argument('-h2', '--height2', type=int, help='height of the second structure')
     args = parser.parse_args()
     name_generator(args.value, args.parameter)
